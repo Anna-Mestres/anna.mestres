@@ -68,6 +68,9 @@ body{
 	font-size: 18px;
 }
 
+div.billion ol{
+	padding-left: 50px;
+}
 
 @media screen and (min-width: 1200px) and (orientation: landscape) {
 	body{
@@ -82,6 +85,10 @@ body{
 		margin-top: 10px;
 		bottom: 0px;
 		right: 0px;
+	}
+
+	div.billion ol{
+		padding-left: 100px;
 	}
 }
 
@@ -98,6 +105,10 @@ body{
 		margin-top: 10px;
 		bottom: 0px;
 		right: 0px;
+	}
+
+	div.billion ol{
+		padding-left: 80px;
 	}
 }
 
@@ -158,13 +169,28 @@ margin-left: 20px;
 }
 
 #border{
-	border: 2px solid red;
+	border: 2px solid orangered;
 	border-image: url("/images/Think.png"); 4 4 stretch:
 
 }
 
 .audio{
-	border: 2px solid red;
+	border: 2px solid orangered;
 	margin-left: 300px;
 
+}
+
+div.billion{
+	padding: 10px;
+	border: 2px dashed orangered;
+}
+
+div.class ol{
+	padding-top: 10px;
+	list-style-type: disc;
+}
+
+div.class ol.il{
+	padding-top: 5px;
+	list-style-type: disc;
 }
