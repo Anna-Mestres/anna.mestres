@@ -198,3 +198,7 @@ div.class ol.il{
 div.index{
 	padding-left: 20px;
 }
+
+div.index h3{
+	padding-top: 3px;
+}
