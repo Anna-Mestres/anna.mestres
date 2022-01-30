@@ -56,6 +56,15 @@ table {
  font-style: normal;
 }
 
+*{
+  color: orangered;
+}
+
+a:hover{
+	background-color: orangered;
+	transition: background-color .3s;
+	color: white;
+}
 
 body{
 	margin-top: 30px;
@@ -64,9 +73,6 @@ body{
 	margin-bottom: 30px;
 }
 
-#end{
-	font-size: 18px;
-}
 
 div.billion ol{
 	padding-left: 50px;
@@ -113,10 +119,7 @@ div.billion ol{
 }
 
 
-*{
-  color: orangered;
 
-}
 
 em{
 	font-style: italic;
@@ -201,4 +204,30 @@ div.index{
 
 div.index h3{
 	padding-top: 3px;
+}
+
+div.web{
+	padding: 10px;
+	border: 2px dashed orangered;
+}
+
+ul.a{
+	list-style-type: circle;
+	padding-left: 25px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+ul.a li{
+	padding-top: 10px;
+}
+
+div.week{
+	padding: 10px;
+	border: 2px dashed orangered;
+	font-size: 15px;
+}
+
+div.fab h1{
+	font-size: 40px;
 }
