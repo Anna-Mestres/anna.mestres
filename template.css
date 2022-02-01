@@ -78,6 +78,10 @@ div.billion ol{
 	padding-left: 50px;
 }
 
+div.index{
+	width: 40%;
+}
+
 @media screen and (min-width: 1200px) and (orientation: landscape) {
 	body{
 		margin-top: 30px;
@@ -231,4 +235,8 @@ div.week{
 
 div.fab h1{
 	font-size: 40px;
+}
+
+.refle em{
+	font-size: 15px;
 }
