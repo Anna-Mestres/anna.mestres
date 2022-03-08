@@ -221,9 +221,69 @@
 
                   <br>
                   <p>
+                    For this activity we have learned to use kicad to be able to manufacture a pcb board. As Julia wants to create a dehydrator, which I am also very interested in, we have decided to do the activity together. Therefore we have created a PCB board with a temperature sensor and an AC drimmer necessary to change the intensity of the infrareds.
+                  </p><br>
+                  These are the resources we found on the internet. Thanks to this <a href="https://youtu.be/lQOzLP1lMJU">video</a>, we were able to understand how AC drimmer worked and make one. In it you can find the necessary components to manufacture it and all the information of how it works.
+                  <br><br>
+                  During the process we needed Jeremy’s help, who really explained what we needed and how it worked. Also Daphne and Santi to be able to understand well the connections between the elements.
+                  <br><br>
+                  These are the components we need:</p>
 
+                  <div class="week">
+                  Fab Lab library:<br>
+                   <ul class="a">
+                     <li>3x Terminal 2p 5</li>
+                     <li>2x Resistor 47k</li>
+                     <li>Resistor 1k</li>
+                     <li>Resistor 10k</li>
+                     <li>2x Resistor 330e</li>
+                     <li>Adafruit_Feather_HUZZAH32_ESP32</li>
+                   </ul>
+                   <br>
+                    External resources library:
+                    <ul class="a">
+                    <li><a href="https://www.snapeda.com/parts/DS18B20/Maxim%20Integrated/view-part/?ref=search&t=DS18B20">Temperature sensor DS18B20</a></li>
+                    <li><a href="https://componentsearchengine.com/part-view/BT136-600D%2C127/Nexperia">WeEn Semiconductors BT136-600D,127</a></li>
+                    <li><a href="https://www.snapeda.com/parts/MOC3021/Lite-On/view-part/?ref=search&t=%20MOC3021">Lite-On MOC3021</a></li>
+                    <li><a href="https://componentsearchengine.com/part-view/MCT2EM/ON%20Semiconductor">MCT2EM</a></li>
+                    <li><a href="https://componentsearchengine.com/part-view/2W10/HY%20Electronic%20Corp">MDD（Microdiode Electronics） 2W10</a></li>
+                  </ul>
+                </div>
+                <br>
+                <br>
+                <div>
+                  <h2>The Process</h2>
+                  <br>
+                  <p>This is the scheme that Julia created with Jeremy, to understand what components we needed. Then we find the AC drimmer scheme, which for its high cost we decided to manufacture one instead of buying it, extracted from the previous video.
                   </p>
                   <br>
+                  <br>
+                  <img alt="esquema" src="../images/fab/board/esquema.jpeg">
+                  <img alt="esquema" src="../images/fab/board/squema.png">
+                  <br>
+                  <br>
+                  <p>The tricky part is finding the parts needed to produce the dehydrator. After finding both symbols and footprint documents. But once this is all must be installed in the kidCad repository, the symbol in Schematic Layout Editor and the footprint in PCB Layout Editor. It must be understood that the symbology serves to make a diagram of the circuit, in terms of footprint, serves to create the real connections and paths between the components with their real measure.
+                    <br><br>
+                    Once the entire export process is done and we have the idea of the system we can start to create first the document Schematic Layout Editor, then generate netlist and with it open the PCB Layout Editor.
+                  </p>
+                  <br>
+                  On Jeremy’s recommendation, the high volatge has been separated with the low, to avoid overloads.
+                  <br>
+                <img alt="kiCad" src="../images/fab/board/proces1.png">
+                <img alt="kiCad" src="../images/fab/board/proces2.png">
+              </div>
+              <br>
+              <br>
+              <div>
+                <h2>Dehydrator AC drimmer PCB Board</h2>
+                <br>
+                <p>Here you can find all the <a href="https://github.com/Anna-Mestres/anna.mestres/tree/main/images/fab/board/files">files</a></p>
+                <br><br>
+                <img alt="final Dehydrator AC drimmer PCB Board" src="../images/fab/board/dehydrator_electronics-brd.svg">
+                <br><br>
+                <embed src="../images/fab/board/system.pdf" type="application/pdf" width="100%" height="600px">
+              </div>
+
             </div>
 
             <div id="w7">
