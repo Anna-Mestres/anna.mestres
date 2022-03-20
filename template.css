@@ -51,13 +51,14 @@ table {
 
 @font-face{
  font-family: "Cambria";
- src: url(../cambria.woff) format("woff");
+ src: url(../web-tipo/cambria.woff) format("woff");
  font-weight: normal;
  font-style: normal;
 }
 
 *{
   color: orangered;
+	font-family: Cambria;
 }
 
 a:hover{
