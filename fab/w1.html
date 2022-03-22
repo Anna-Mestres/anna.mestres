@@ -277,11 +277,21 @@
               <div>
                 <h2>Dehydrator AC drimmer PCB Board</h2>
                 <br>
-                <p>Here you can find all the <a href="https://github.com/Anna-Mestres/anna.mestres/tree/main/images/fab/board/files">files</a></p>
+                <h3>First Prototype</h3>
+                <br>
+                <p>Here you can find all the <a href="https://github.com/Anna-Mestres/anna.mestres/tree/main/images/fab/board/files">files</a> of the first prototype.</p>
                 <br><br>
                 <img alt="final Dehydrator AC drimmer PCB Board" src="../images/fab/board/dehydrator_electronics-brd.svg">
                 <br><br>
                 <embed src="../images/fab/board/system.pdf" type="application/pdf" width="100%" height="600px">
+                <br>
+                <br>
+                <h3>Second Prototype</h3>
+                <br>
+                <img alt="final Dehydrator AC drimmer PCB Board" src="../images/fab/board/dehydrator_electronics-brd.svg">
+                <br><br>
+                <embed src="../images/fab/board/system.pdf" type="application/pdf" width="100%" height="600px">
+                <br>
               </div>
 
             </div>
@@ -292,7 +302,7 @@
                     <div class="week">
                     <p>The <em>weekly task</em>:<br>
                       <ul class="a">
-                        <li></li>
+                        <li>Design something big IN PAIRS! . You can use up to a maximun of half full board ( that means 1200x1200mm) of the available material per student. 15 mm thick pine plywood boards.</li>
                     </p></ul>
                   </div>
                   <br>
@@ -308,14 +318,66 @@
                     <div class="week">
                     <p>The <em>weekly task</em>:<br>
                       <ul class="a">
-                        <li></li>
+                        <li>Use your programmer (HUZZAH32, ESP32 Feather) to program a circuit with a “led and a bottom” to do something</li>
                     </p></ul>
                   </div>
                   <br>
                   <p>
-
+                    In order to start programming first you must make a flowchart. In this way we can understand the logical functioning that the computer will process. In my case, I want to program the random color change of the LED strip from a button.
                   </p>
                   <br>
+                  <img alt="flowchart" src="../images/fab/program/flowchart.jpg">
+                  <br>
+                  <p>This will be programmed with the arduino C++ language, using Arduino IDE, for our ESP32 Feather board. </p>
+                  <br>
+                  <div class="caja">
+                        #include < Adafruit_NeoPixel.h ><br>
+                          <br>
+                        #define PIN 15<br>
+                        #define NUMPIXELS 12<br>
+                        <br>
+                        Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+                        <br><br>
+                        int delayval = 250; // delay for half a second<br>
+                        int counter = 0; <br>
+                        int buttonPin = 3;<br>
+                        <br>
+                        void setup()<br>
+                        {<p>
+                          Serial.begin(9600); <br>
+                          pixels.begin(); // This initializes the NeoPixel library.<br>
+                          randomSeed(analogRead(0));<br>
+                          pinMode(buttonPin, INPUT);<br>
+                        </p>}<br>
+                        <br>
+                        void loop()<br>
+                        {
+                        if (digitalRead(buttonPin) == HIGH){<p>
+                          counter++;<br>
+                          if (counter == 1){<br>
+                            int led = random(12);<br>
+                            int redNumber = random(255);<br>
+                          }<br>
+                          if (counter = 2){<br>
+                            int led = random(12);<br>
+                            int greenNumber = random(255);<br>
+                          }<br>
+                          if (counter = 3){<br>
+                            int led = random(12);<br>
+                            int blueNumber = random(255);<br>
+                          }<br>
+                          if (counter = 4){<br>
+                            int redNumber = 0;<br>
+                            int greenNumber = 0;<br>
+                            int blueNumber = 0;<br>
+                            counter = 0;<br>
+                          }<br>
+                        </p>}<br>
+                        pixels.setPixelColor(i, pixels.Color(redNumber,greenNumber,blueNumber));<br>
+                        pixels.show(); // This sends the updated pixel color to the hardware.<br>
+                        delay(delayval); // Delay for a period of time (in milliseconds).<br>
+                      </p>}
+                  </div>
             </div>
 
             <div id="w9">
