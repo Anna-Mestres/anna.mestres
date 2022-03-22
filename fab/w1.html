@@ -331,22 +331,22 @@
                   <p>This will be programmed with the arduino C++ language, using Arduino IDE, for our ESP32 Feather board. </p>
                   <br>
                   <div class="caja">
-                        #include < Adafruit_NeoPixel.h ><br>
+                        <b>#include < Adafruit_NeoPixel.h ><br>
                           <br>
                         #define PIN 15<br>
                         #define NUMPIXELS 12<br>
                         <br>
                         Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
                         <br><br>
-                        int delayval = 250; // delay for half a second<br>
-                        int counter = 0; <br>
+                        int delayval = 250;</b> // delay for half a second<br>
+                        <b>int counter = 0; <br>
                         int buttonPin = 3;<br>
                         <br>
                         void setup()<br>
                         {<p>
                           Serial.begin(9600); <br>
-                          pixels.begin(); // This initializes the NeoPixel library.<br>
-                          randomSeed(analogRead(0));<br>
+                          pixels.begin();</b> // This initializes the NeoPixel library.<br>
+                          <b>randomSeed(analogRead(0));<br>
                           pinMode(buttonPin, INPUT);<br>
                         </p>}<br>
                         <br>
@@ -374,8 +374,8 @@
                           }<br>
                         </p>}<br>
                         pixels.setPixelColor(i, pixels.Color(redNumber,greenNumber,blueNumber));<br>
-                        pixels.show(); // This sends the updated pixel color to the hardware.<br>
-                        delay(delayval); // Delay for a period of time (in milliseconds).<br>
+                        pixels.show();</b> // This sends the updated pixel color to the hardware.<br>
+                        <b>delay(delayval); </b>// Delay for a period of time (in milliseconds).<br>
                       </p>}
                   </div>
             </div>
