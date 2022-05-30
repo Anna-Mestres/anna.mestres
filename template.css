@@ -292,3 +292,12 @@ div .caja p{
 	padding-left: 60px;
 
 }
+
+.ethic-taulaveritat {
+	width: 50%;
+	float: right;
+}
+
+.ethic-text {
+	float: left;
+}
