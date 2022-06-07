@@ -5,6 +5,8 @@
         <title>Interventions_Anna Mestres</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../template.css">
+        <script type="text/javascript" src="scripts/images-random.js"></script>
+        <script type="text/javascript" src="scripts/images-random-final.js"></script>
     </head>
 
     <body>
@@ -37,10 +39,222 @@
         <br>
         <p>In order to do this, we will use an array of the images, and then call them randomly each time the image is clicked on. From Javascript and html.
           <br><br>
-        We also wanted to think about where this could be implemented on the website. Since the website is now composed of Game repository, Contact, Let's learn and Manifesto. Taking into account that it is a learning motive, aprendamos would be a good place to implement it. But also the aim of the manifesto is to create issues and make it as enjoyable as possible. So, it would be feasible in both. 
+        We also wanted to think about where this could be implemented on the website. Since the website is now composed of Game repository, Contact, Let's learn and Manifesto. Taking into account that it is a learning motive, aprendamos would be a good place to implement it. But also the aim of the manifesto is to create issues and make it as enjoyable as possible. So, it would be feasible in both.
+        <br>
+        <br>
+          First I have taken a picture of each answer and I have removed the background with photoshop to improve the aesthetics with the user.
+      </p>
+        <br>
+        <img alt="" src="../images/studio/intervention4/drafts/drafts.jpg">
+        <br>
+      <p>
+        In order to make the src change between images randomly I have searched in html and javascript forums about some open source code to use. I found <a href="https://stackoverflow.com/questions/40110239/switch-from-image-to-random-image-onclick-with-javascript">these comments</a> and tried to implement it in my code. First I tried to implement this code.
+      </p>
+      <br>
+      <div class="caja">
+        <p>
+                    var images = [ <br>
+              "http://img1.science-et-vie.com/var/scienceetvie/storage/images/galerie/deepsea-challenge-le-film-de-james-cameron-livre-des-images-inedites-des-grands-fonds-marins-5165/19818-1-fre-FR/Deepsea-challenge-le-film-de-James-Cameron-livre-des-images-inedites-des-grands-fonds-marins_square500x500.jpg",
+              "http://static.mensup.fr/photos/145240/carre-premieres-images-officielles-pour-assassin-s-creed-rogue.jpg",
+              "http://www.pnas.org/site/misc/images/16-01910.500.jpg" ];<br>
+          <br>
+            init();<br>
+          <br>
+            function random_image(images) {<br>
+              var random = randomize(images);<br>
+              while(images[random] === document.getElementById("image").src){
+                random = randomize(images)<br>
+              }<br>
+              document.getElementById("image").src = images[random].toString();<br>
+            }<br>
+          <br>
+            function randomize(array){<br>
+              return Math.floor((Math.random() * (array.length)));<br>
+            }<br>
+          <br>
+            function init() {<br>
+              document.getElementById("image").addEventListener("click", function(){<br>
+                random_image(images);<br>
+              });<br>
+              random_image(images);<br>
+            }<br>
         </p>
       </div>
+      <br>
+      <p>But I got an error in init() and in reading the image id from the init() function. So I changed the script a bit to test if it worked like this. I have removed the call to the function, because this function was only useful to start with a random picture, which I don't care about because I have the default cover. And thus eliminate the init error. And then I tried to fix the id so that it would look for a class instead of an id. But still the error kept coming up.
+      </p>
+      <br>
+      <div class="caja">
+        <p>var images = [<br>
+          "../images/studio/intervention4/fam&toys.png",<br>
+          "../images/studio/intervention4/fam&toys1.png",<br>
+          "../images/studio/intervention4/fam&toys2.png" ];<br>
+        <br>
+        function random_image(images) {<br>
+          var random = randomize(images);<br>
+          while(images[random] === document.getElementById("image").src){<br>
+            random = randomize(images)<br>
+          }<br>
+          document.getElementById("image").src = images[random].toString();<br>
+        }<br>
+        <br>
+        function randomize(array){<br>
+          return Math.floor((Math.random() * (array.length)));<br>
+        }<br>
+        <br>
+        document.querySelector(".bucle_img_intervention4").addEventListener("click", random_image);<br>
+        </p>
+      </div>
+      <br><Br>
+      <img alt="" src="../images/studio/intervention4/drafts/error.png">
+      <br><br>
+      <p>As I don't understand the error because that line is implemented in another code that works, I decided to try the other solution explained in the comments. Putting the src of each image in the array.
+      </p>
+      <br>
+      <div class="caja">
+        <p>var myImages1 = new Array();<br>
+        myImages1.push("../images/studio/intervention4/fam&toys.png");<br>
+        myImages1.push("../images/studio/intervention4/fam&toys1.png");<br>
+        myImages1.push("../images/studio/intervention4/fam&toys2.png");<br>
+        myImages1.push("../images/studio/intervention4/fam&toys3.png");<br>
+        myImages1.push("../images/studio/intervention4/fam&toys4.png");<br>
+        myImages1.push("../images/studio/intervention4/fam&toys5.png");<br>
+        myImages1.push("../images/studio/intervention4/fam&toys6.png");<br>
+        myImages1.push("../images/studio/intervention4/fam&toys7.png");<br>
+        myImages1.push("../images/studio/intervention4/fam&toys9.png");<br>
+        myImages1.push("../images/studio/intervention4/fam&toys10.png");<br>
+        myImages1.push("../images/studio/intervention4/fam&toys11.png");<br>
+        myImages1.push("../images/studio/intervention4/fam&toys12.png");<br>
+        myImages1.push("../images/studio/intervention4/fam&toys13.png");<br>
+        <br>
+        function getRandomInt(min, max) {<br>
+          return Math.floor(Math.random() * (max - min + 1)) + min;<br>
+        }<br>
+        <br>
+        function pickimg2() {<br>
+          document.randimg.src = myImages1[getRandomInt(0, myImages1.length - 1)];<br>
+        }<br>
+        </p>
+      </div>
+      <br><br>
+        <p>
+          Here you can see how it works perfectly:
+        </p>
 
+      <div class="bucle_img_intervention4">
+        <a href="#" onClick="pickimg1();return false;">
+          <img alt="proba" class="center-image" src="../images/studio/intervention4/fam&toys_portada.png" name="randimg" width="400px">
+        </a>
+      </div>
+      <br>
+      <p>Finally, this would be the html and javascript code of the three arrays.
+      </p>
+      <br>
+      <div class="caja">
+        <b>html code</b>
+        <p>
+          < html ><br>
+              < head ><br>
+                  < meta charset="utf-8"><br>
+                  < link rel="stylesheet" href="../template.css"><br>
+                  < script type="text/javascript" src="scripts/images-random-final.js"></ script><br>
+              < / head><br>
+              < body><br>
+        </p>
+      </div>
+      <br>
+      <br>
+      <div class="caja">
+        <b>Javascript code</b>
+        <p>
+          var myImages2 = new Array();<br>
+          myImages2.push("../images/studio/intervention4/fam.png");<br>
+          myImages2.push("../images/studio/intervention4/fam1.png");<br>
+          myImages2.push("../images/studio/intervention4/fam2.png");<br>
+          myImages2.push("../images/studio/intervention4/fam3.png");<br>
+          myImages2.push("../images/studio/intervention4/fam4.png");<br>
+          myImages2.push("../images/studio/intervention4/fam5.png");<br>
+          myImages2.push("../images/studio/intervention4/fam6.png");<br>
+          myImages2.push("../images/studio/intervention4/fam7.png");<br>
+          myImages2.push("../images/studio/intervention4/fam8.png");<br>
+          myImages2.push("../images/studio/intervention4/fam9.png");<br>
+          myImages2.push("../images/studio/intervention4/fam10.png");<br>
+          myImages2.push("../images/studio/intervention4/fam11.png");<br>
+          <br>
+          var myImages3 = new Array();<br>
+          myImages3.push("../images/studio/intervention4/toy.png");<br>
+          myImages3.push("../images/studio/intervention4/toy1.png");<br>
+          myImages3.push("../images/studio/intervention4/toy2.png");<br>
+          myImages3.push("../images/studio/intervention4/toy3.png");<br>
+          myImages3.push("../images/studio/intervention4/toy4.png");<br>
+          myImages3.push("../images/studio/intervention4/toy5.png");<br>
+          myImages3.push("../images/studio/intervention4/toy6.png");<br>
+          myImages3.push("../images/studio/intervention4/toy7.png");<br>
+          myImages3.push("../images/studio/intervention4/toy9.png");<br>
+          myImages3.push("../images/studio/intervention4/toy10.png");<br>
+          myImages3.push("../images/studio/intervention4/toy11.png");<br>
+          myImages3.push("../images/studio/intervention4/toy12.png");<br>
+          myImages3.push("../images/studio/intervention4/toy13.png");<br>
+          myImages3.push("../images/studio/intervention4/toy14.png");<br>
+          myImages3.push("../images/studio/intervention4/toy15.png");<br>
+          <br>
+          var myImages4 = new Array();<br>
+          myImages4.push("../images/studio/intervention4/fam&toys.png");<br>
+          myImages4.push("../images/studio/intervention4/fam&toys1.png");<br>
+          myImages4.push("../images/studio/intervention4/fam&toys2.png");<br>
+          myImages4.push("../images/studio/intervention4/fam&toys3.png");<br>
+          myImages4.push("../images/studio/intervention4/fam&toys4.png");<br>
+          myImages4.push("../images/studio/intervention4/fam&toys5.png");<br>
+          myImages4.push("../images/studio/intervention4/fam&toys6.png");<br>
+          myImages4.push("../images/studio/intervention4/fam&toys7.png");<br>
+          myImages4.push("../images/studio/intervention4/fam&toys9.png");<br>
+          myImages4.push("../images/studio/intervention4/fam&toys10.png");<br>
+          myImages4.push("../images/studio/intervention4/fam&toys11.png");<br>
+          myImages4.push("../images/studio/intervention4/fam&toys12.png");<br>
+          myImages4.push("../images/studio/intervention4/fam&toys13.png");<br>
+          <br>
+          function getRandomInt2(min, max) {<br>
+            return Math.floor(Math.random() * (max - min + 1)) + min;<br>
+          }<br>
+          <br>
+          function pickimg2() {<br>
+            document.randimg2.src = myImages2[getRandomInt2(0, myImages2.length - 1)];<br>
+          }<br>
+          <br>
+          function pickimg3() {<br>
+            document.randimg3.src = myImages3[getRandomInt2(0, myImages3.length - 1)];<br>
+          }<br>
+          <br>
+          function pickimg4() {<br>
+            document.randimg4.src = myImages4[getRandomInt2(0, myImages4.length - 1)];<br>
+          }<br>
+        </p>
+      </div>
+      <br>
+      <p>
+        This would be the final result with all three questions and all images.
+      </p>
+      <br>
+      <div class="ejemplo">
+      <div class="img_intervention4">
+        <h3>What is family</h3><Br>
+        <a href="#" onClick="pickimg2();return false;">
+          <img alt="proba" class="center-image" src="../images/studio/intervention4/fam&toys_portada.png" name="randimg2" width="400px">
+        </a>
+      </div>
+      <div class="img_intervention4">
+        <h3>What is toys</h3><br>
+        <a href="#" onClick="pickimg3();return false;">
+          <img alt="proba" class="center-image" src="../images/studio/intervention4/fam&toys_portada.png" name="randimg3" width="400px">
+        </a>
+      </div>
+      <div class="img_intervention4">
+        <h3>What is the relation between family and toys?</h3>
+        <a href="#" onClick="pickimg4();return false;">
+          <img alt="proba" class="center-image" src="../images/studio/intervention4/fam&toys_portada.png" name="randimg4" width="400px">
+        </a>
+      </div>
+    </div>
       <br><br>
 
       <div>
