@@ -567,9 +567,35 @@
                   </div>
                   <br>
                   <p>
-
+                    This task will be done with Kai, we are going to connect our two ESP32 with cables, and through the computer send a message from one to the other. To do this we will follow this <a href="https://www.electroniclinic.com/serial-communication-between-two-arduino-boards/">tutorial.</a>
                   </p>
+
                   <br>
+                  <img alt="circuito" src="../images/fab/w14.jpeg">
+                  <br><br>
+                  <p>This is the code we have used for each of the pcb. </p>
+                  <br>
+                  <div class="caja">
+                    <p>
+                      void setup() {<br>
+                        Serial.begin(9600);<br>
+                        Serial1.begin(9600);<br>
+                      }<br>
+
+                      <br>void loop() {<br>
+                        if (Serial1.available() > 0) {<br>
+                          char incomingByte = Serial1.read();<br>
+                          Serial.print (incomingByte);<br>
+                        }<br>
+                        if (Serial.available() > 0) {<br>
+                          char incomingByte = Serial.read();<br>
+                          Serial1.write(incomingByte);<br>
+                        }<br>
+                      }<br>
+                    </p>
+                  </div>
+                  <br>
+                  <iframe width="100%" height="315" src="https://www.youtube.com/embed/cGmmanefa-8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
 
             <div id="w15">
@@ -584,9 +610,95 @@
                 </div>
                 <br>
                   <p>
-
+                    I am going to use the processing programme to be able to change the colour of a square from an output that would be the push of a button. I have followed a <a href="https://processing.org/tutorials/electronics/#code">tutorial</a> that is explained in the web page itself.<br>
+                    <br>
+                    First of all, we create the connections between the elements and the pcb.
                   </p>
                   <br>
+                  <img alt="circuito" src="../images/fab/w15.jpeg">
+                  <br><br>
+                  <p>
+                    During the process when trying to implement the Processing code to the arduino it did not read the correct serial port and therefore did not apply the code. I got this error.
+                  </p>
+                  <br>
+                  <img alt="circuito" src="../images/fab/error.png">
+                  <br><br>
+                  <p>
+                    I used the following code to read the port on which it was connected, to check that it was not different from the Arduino one. And in the Processing console it printed COM4, which matched the Arduino one. But the program still searched for COM1. <br>
+                    <br>
+                    <div class="caja">
+                      import processing.serial.*;<br>
+                        Serial myPort;<br>
+                        void setup(){<br>
+                        String portName[] = Serial.list();<br>
+                        println(portName);<br>
+                      }<br>
+                    </div>
+                    <br>
+                    Then on the internet looking how to call a port specifically in Processing, I found this web page, where I exposed the following. And I noticed that my code was missing the <em>Serial.list( )[0]</em> part, so I added it and it started working.
+                  </p>
+                  <br>
+                  <img alt="circuito" src="../images/fab/solucion.png">
+                  <br><br>
+                  <h2>Final Code</h2><br>
+                  <br>
+                  <div class="caja">
+                    <b>Code for the Arduino</b>
+                    <p>
+                      // Code for sensing a switch status and writing the value to the serial port
+                      <br><br>
+                      int switchPin = 4;  // Switch connected to pin 4<br>
+                      <br>
+                      void setup() {<br>
+                        pinMode(switchPin, INPUT);  // Set pin 0 as an input<br>
+                        Serial.begin(9600);         // Start serial communication at 9600 bps<br>
+                      }<br>
+                      <br>
+                      void loop() {<br>
+                        if (digitalRead(switchPin) == HIGH) {  // If switch is ON,<br>
+                          Serial.write(1);                     // send 1 to Processing<br>
+                        } else {                               // If the switch is not ON,<br>
+                          Serial.write(0);                     // send 0 to Processing<br>
+                        }<br>
+                        delay(100);                            // Wait 100 milliseconds<br>
+                      }
+                    </p>
+                  </div>
+                  <br>
+                  <div class="caja">
+                    <b>Code for the Processing</b>
+                    <p>
+                      // Read data from the serial port and change the color of a rectangle<br>
+                      // when a switch connected to the board is pressed and released<br>
+                      <br>
+                      import processing.serial.*;<br>
+                      <br>
+                      Serial myPort;                             // Create object from Serial class<br>
+                      int val;                                 // Data received from the serial port<br>
+                      <br>
+                      void setup() {<br>
+                        size(200, 200);<br>
+                        frameRate(10);<br>
+                        // Open the port that the board is connected to and use the same speed (9600 bps)<br>
+                        myPort = new Serial(this, Serial.list()[0], 9600);<br>
+                      }<br>
+                      <br>
+                      void draw() {<br>
+                        if (0 < myPort.available()) {         // If data is available,<br>
+                          val = myPort.read();                   // read it and store it in val<br>
+                        }<br>
+                        background(255);                       // Set background to white<br>
+                        if (val == 0)  {                       // If the serial value is 0,<br>
+                          fill(0);                             // set fill to black<br>
+                        } else {                               // If the serial value is not 0,<br>
+                          fill(204);                           // set fill to light gray<br>
+                        }<br>
+                        rect(50, 50, 100, 100);<br>
+                      }
+                    </p>
+                  </div>
+                  <br>
+                  <iframe width="100%" height="315" src="https://www.youtube.com/embed/mKg0_CmkeAo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
 
             <div id="w16">
