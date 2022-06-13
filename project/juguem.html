@@ -12,21 +12,285 @@
       Juguem Project
     </div>
 
+    <br>
+    <p>
+      The first design of the Juguem website was made from scratch using html and css only. And it was uploaded to the git hub, this is the link: <a href="https://anna-mestres.github.io/JuguemProject/portada.html">https://anna-mestres.github.io/JuguemProject/portada.html</a>. But we tried to create a form with php and javascript validation. It didn't work. I had to ask for help to find out what was the problem. And it turns out that the GitHub server does not accept the submit attribute of the form. So it was just a graphic with no use or function. And what's more, everything I had worked on didn't work as such, since my purpose was to make people participate in it.
+      <br><br>
+      What I did was to search the internet and I realised that I had a domestika template with nunjucks and janson where the server is Eleventy. That tolerates and manages the forms for free. So I had to redesign the whole site again. You have to take into account that I have never designed a website until this year, as well as, that in this case it is the first time I use nunjucks, eleventy, janson and JavaScript. So the process was totally trial and error learning.
+    </p>
+
     <div class="refle">
       <h2>Index</h2>
       <br>
-      <p>The evolution of the website:
+      <p>The evolution of the offical website:
         <ul class="a">
-            <li><a href="#work">First Design</a></li>
-            <li><a href="#int">Starts Building code</a></li>
-            <li><a href="#state">First Draw of the Manifesto</a></li>
-            <li><a href="#state">Problems</a></li>
-            <li><a href="#state">Publication of the Website</a></li>
+            <li><a href="#juguem1">Brainstorming</a></li>
+            <li><a href="#juguem2">Start Building Code</a></li>
+            <li><a href="#juguem3">The Manifesto</a></li>
+            <li><a href="#juguem4">Publication of the Website</a></li>
         </ul>
         </p>
+      </div>
+
+      <div>
+        <h2 id="juguem1">Brainstorming</h2>
+        <br>
+        <p>
+          In order to organise the site correctly I first made a trello with the things I wanted to have in a global way in all the pages and also in each page. The website is composed in the first design of the manifesto, let's learn, game repository and contact.
+        </p>
+        <br>
+        <img alt="juguem" src="../images/studio/juguem/trello.png">
+        <br><br>
+        <p>
+          I had a big dispute to choose the main language of the website. It is clear that English is the basic international language. Spanish is the national level. And Catalan the language of the natives (mainly). In this descending scale I therefore limited and created barriers only in the language. Analysing the stakeholders I realised that I really wanted to implement it in the Catalan culture, so it was logical to start with Catalan. Although my intentions are to implement it in Spanish and English in the future.
+          <br><br>
+        Then choose the colours and typography of the website. And to create the logo and the drop down menu of the website and the project.
+        </p>
+        <br>
+        <img alt="juguem" src="../images/studio/juguem/intro.jpg">
+        <br><br>
+        <p>
+          Then I tried to shape with figma the aesthetics of the page. What I wanted and what I didn't want. But I quickly realised that this step was taking up a lot of my time and more importantly I didn't know if I would be able to recreate the effects with the website. So I decided to program the website directly.
+        </p>
+        <br>
+        <img alt="juguem" src="../images/studio/juguem/figma.png">
+        <br><br>
+      </div>
+      <div>
+        <h2 id="juguem2">Start Building Code</h2>
+        <br>
+        <p>
+          First I started by designing the home page. Where I implemented a JavaScript code so that when the mouse hovered over the central logo image, it would change to the explanation, subtitle. The HTML and JavaScript code we used is as follows;
+        </p>
+        <br>
+        <div class="caja">
+          <b>html code</b>
+          <p>
+            < div class="col-12 indeximages"><br>
+                < a  href="#" onmouseover="rollover('index', image02)"<br>
+              onmouseout="rollover('index', image01)"><br>
+              < img src="../../assets/images/logo.svg" name="index"><br>
+              < / a><br>
+            < / div>
+          </p>
+        </div>
+        <br>
+        <br>
+        <div class="caja">
+          <b>Javascript code</b>
+          <p>
+            image01= new Image()<br>
+                image01.src="../../assets/images/logo.svg"<br>
+                image02= new Image()<br>
+                image02.src="../../assets/images/explicacio.svg"<br>
+                function rollover(imagename, newsrc){<br>
+                document.images[imagename].src=newsrc.src<br>
+              }
+          </p>
+        </div>
+        <br>
+        <br>
+        <p>
+          Then with Josep's help I was able to implement a p5js code as a background to make it even more interactive. We had a problem with the z-index layers of the website. Each section of the header, body and footer had a different background colour style implemented. Therefore if we put z-index -1 it stayed underneath and did not let us observe the graphics. So what I did was simply to remove the background of all the contents of the home page. And for that I had to create another header, body and footer, changing the style of these without affecting the other pages.  By using nunjucks, I created a header, body and footer with the same content (in the case of body, it collects the content written on each page), thus copiling an index.html for each one with the same structure but different content for body. This was the javascript code made from p5js.
+        </p>
+        <br>
+        <div class="caja">
+          <b>Javascript code</b>
+          <p>
+            let locationY = -100; <br>
+            let speedY = 2; <br>
+            let gravity = 0.2;  <br>
+            <br>
+            function windowsResized() { <br>
+              resizeCanvas(windowWidth-10, windowHeight-10);  <br>
+            } <br>
+            <br>
+            function setup() {  <br>
+              canvas=createCanvas(windowWidth-2, windowHeight-2); <br>
+              //canvas=createCanvas(400, 400);  <br>
+              canvas.position(0,0); <br>
+              canvas.style('z-index', '-1');  <br>
+            } <br>
+            <br>
+            function draw() { <br>
+              background(246, 245, 242);  <br>
+              fill(240, 237, 228);  <br>
+              noStroke(); <br>
+              translate(width/8, locationY);  <br>
+              triangle(-100, 120, -180, 120, -140, 40); <br>
+              ellipse(0, 80, 80, 80); <br>
+              square(200, 0, 80, 0);  <br>
+              square(450, 160, 80, 0);  <br>
+              triangle(400, 120, 480, 120, 440, 40);  <br>
+              ellipse(700, 80, 80, 80); <br>
+              triangle(800, 120, 880, 120, 840, 40);  <br>
+              ellipse(1000, 20, 80, 80);  <br>
+              square(1250, 160, 80, 0); <br>
+              locationY += speedY;  <br>
+              speedY += gravity;  <br>
+              if ((locationY >= height)) {  <br>
+                speedY = speedY * -0.9; <br>
+                locationY = height; <br>
+              } <br>
+            } <br>
+            <br>
+            function mousePressed(){  <br>
+              locationY = -100; <br>
+              speedY = 0; <br>
+              gravity = 0.2;  <br>
+            }
+
+          </p>
+        </div>
+        <br>
+          <img alt="juguem" src="../images/studio/juguem/inici.png">
+          <br><br>
+        <p>
+          Thanks to the <a href="https://www.domestika.org/es/courses/1042-diseno-desarrollo-y-publicacion-de-una-pagina-web">Domestika</a> course I was able to make the navigation code.
+        </p>
+        <br>
+        <div class="caja">
+          <b>html & nunjucks code</b>
+          <p>
+            {% set navPages = collections.all | eleventyNavigation %}<br>
+            < div class="nav-index font-1 col-12 indexnavegacio"><br>
+              {%- for elemento in navPages %}<br>
+                < a href="{{ elemento.url | url }}"<br>
+                  {% if elemento.url == page.url %} class="active"{% endif %}<br>
+                ><br>
+                  {{ elemento.title }}<br>
+                < / a><br>
+              {%- endfor %}
+          </p>
+        </div>
+        <br>
+        <br>
+        <p>Then create the form for the contact page. Where I implement a form that we know that at the end so that eleventy can activate the form we have to implement a couple more classes so that it can process it as such.
+        </p>
+        <br>
+        <img alt="juguem" src="../images/studio/juguem/form.png">
+        <br><br>
+        <p>
+          Then I started to experiment with the aprenem code. Where I had to create a library with books, movies and text. From nunjucks I created the loop where in each one I read a database and repeated the same class in each one. First I put them all continuous to check that they worked. When I realised that if the library was too full it would not be possible to visualise correctly all the content, since it would have to go through all the movies to get to the books, and all the documents to get to the texts. So I wanted to create a menu bar with all three, so that the user could choose between the three sections and in this way create a more intuitive and orderly environment.
+        </p>
+          <br>
+          <img alt="juguem" src="../images/studio/juguem/aprenem.png">
+          <br>
+        <br>
+        <p>
+          In order to achieve this, I created three buttons and with JavaScript I gave a value to the click that added one class or another to the elements. To explain it in another way. Each group of films, books and texts, I applied from the beginning a display none. This allows not to display or affect the space on the web page. In this way at the beginning we have no element shown because they are all hidden. When clicking on some of the titles, let's say movies, it changes from display none to display block. Displayed and occupying the space on the page. And at the same time it adds display none to the other components, to make sure that if any of them are left open they are hidden again. With the help of Edu from FabAcademy I was able to write the code.
+        </p>
+          <br>
+          <img alt="juguem" src="../images/studio/juguem/aprenemjava.png">
+          <br>
+        <br>
+        <p>
+          At first, the code seemed to work, but after a while I saw an error. When you clicked on books for example, if you didn't click on books again, it would turn books on again. So looking at the inspector we found out that it was because both classes were applied at the same time. So we added a remove to remove the previous class, if there was one. This would be the final code.
+        </p>
+        <br>
+        <div class="caja">
+          <b>JavaScript code</b>
+          <p>
+                      function cambiaTitolPeli() {  <br>
+                        <br>
+              document.querySelectorAll(".nav-pelicules").forEach((item, i) => {  <br>
+                item.classList.add("nav-aprenem-activo"); <br>
+                item.classList.remove("nav-aprenem-desactivo"); <br>
+              }); <br>
+              document.querySelectorAll(".nav-llibres").forEach((item, i) => {  <br>
+                item.classList.add("nav-aprenem-desactivo");  <br>
+                item.classList.remove("nav-aprenem-activo");  <br>
+              }); <br>
+              document.querySelectorAll(".nav-textos").forEach((item, i) => { <br>
+                item.classList.add("nav-aprenem-desactivo");  <br>
+                item.classList.remove("nav-aprenem-activo");  <br>
+              }); <br>
+              <br>
+              //document.querySelectorAll(".nav-pelicules").classList.toggle("nav-aprenem-activo"); <br>
+              //document.querySelectorAll(".nav-llibres").classList.toggle("nav-aprenem-desactivo");  <br>
+              //document.querySelectorAll(".nav-textos").classList.toggle("nav-aprenem-desactivo"); <br>
+              <br>
+          } <br>
+          <br>
+          function cambiaTitolLlibre() {  <br>
+            <br>
+              document.querySelectorAll(".nav-pelicules").forEach((item, i) => {  <br>
+                item.classList.add("nav-aprenem-desactivo");  <br>
+                item.classList.remove("nav-aprenem-activo");  <br>
+              }); <br>
+              document.querySelectorAll(".nav-llibres").forEach((item, i) => {  <br>
+                item.classList.add("nav-aprenem-activo"); <br>
+                item.classList.remove("nav-aprenem-desactivo"); <br>
+              }); <br>
+              document.querySelectorAll(".nav-textos").forEach((item, i) => { <br>
+                item.classList.add("nav-aprenem-desactivo");  <br>
+                item.classList.remove("nav-aprenem-activo");  <br>
+              }); <br>
+              <br>
+              //document.querySelectorAll(".nav-pelicules").classList.toggle("nav-aprenem-activo"); <br>
+              //document.querySelectorAll(".nav-llibres").classList.toggle("nav-aprenem-desactivo");  <br>
+              //document.querySelectorAll(".nav-textos").classList.toggle("nav-aprenem-desactivo"); <br>
+              <br>
+          } <br>
+          <br>
+          function cambiaTitolText() {  <br>
+            <br>
+              document.querySelectorAll(".nav-pelicules").forEach((item, i) => {  <br>
+                item.classList.add("nav-aprenem-desactivo");  <br>
+                item.classList.remove("nav-aprenem-activo");  <br>
+              }); <br>
+              document.querySelectorAll(".nav-llibres").forEach((item, i) => {  <br>
+                item.classList.add("nav-aprenem-desactivo");  <br>
+                item.classList.remove("nav-aprenem-activo");  <br>
+              }); <br>
+              document.querySelectorAll(".nav-textos").forEach((item, i) => { <br>
+                item.classList.add("nav-aprenem-activo"); <br>
+                item.classList.remove("nav-aprenem-desactivo"); <br>
+              }); <br>
+              <br>
+              //document.querySelectorAll(".nav-pelicules").classList.toggle("nav-aprenem-activo"); <br>
+              //document.querySelectorAll(".nav-llibres").classList.toggle("nav-aprenem-desactivo");  <br>
+              //document.querySelectorAll(".nav-textos").classList.toggle("nav-aprenem-desactivo"); <br>
+              <br>
+          } <br>
+          <br>
+          document.querySelector(".pelicula-aprenem-titol").addEventListener("click", cambiaTitolPeli); <br>
+          <br>
+
+          document.querySelector(".llibre-aprenem-titol").addEventListener("click", cambiaTitolLlibre); <br>
+          <br>
+
+          document.querySelector(".text-aprenem-titol").addEventListener("click", cambiaTitolText); <br>
+
+          </p>
+        </div>
+        <br>
+        <br>
+        <p>Once it was finished, we needed to create a form to be able to send new ideas to increase the library among all of us. That's why I created a separate form for collaboration and let you choose to add films, books and texts. And thanks to Ximena's comment I added the section on reasoning, because sometimes perspectives can change.
+        </p>
+        <br>
+        <p>
+        Finally I designed the two most complicated and essential parts of the website. One for its semantic value, the manifest, and the other for its utility, the game repository. First I chose to design the manifesto. I wanted to give a clear and effective order if in any case someone didn't want to read it in its entirety to have a perspective of the situation. From here to the initial explanation and introduction. The purpose and objective of the website. And the main ideas before starting the text. And finally, the game designed in <a href="interventions.html#intervention4">intervention 4</a>, to provide new points of view.
+        <br><br>
+        We wanted to make it a bit more visual to make it more pleasant to the public, and not another political text with only semantic value. So this illustration was animated from an open library called <a href="https://www.programandoamedianoche.com/2018/03/como-hacer-la-animacion-de-linea-dibujandose-con-un-svg">vivus</a> written in JavaScript language.
+      </p>
+      <br>
+          <img alt="juguem" src="../images/studio/juguem/recurso2.svg">
+          <br><br>
+        <p>
+          Then I tried to shape with figma the aesthetics of the page. What I wanted and what I didn't want. But I quickly realised that this step was taking up a lot of my time and more importantly I didn't know if I would be able to recreate the effects with the website. So I decided to program the website directly.
+        </p>
+        <br>
+        <img alt="juguem" src="../images/studio/juguem/figma.jpg">
+        <br><br>
       </div>
 
       <h2 id="end"><a href="../project.html">Go back</a></h2>
     </body>
 
+    <script src="scripts/vivus.js"></script>
+    <script>
+      var mysvg = new Vivus('Capa', {duration: 150, type: 'sync',}, function() {
+       });
+      </script>
 </html>
