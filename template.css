@@ -344,3 +344,7 @@ div .caja p{
 	transition: none;
 	color: inherit;
 }
+
+.centrar_websitefinal {
+	text-align: center;
+}
